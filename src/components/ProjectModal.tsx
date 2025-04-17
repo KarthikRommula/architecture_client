@@ -1,0 +1,100 @@
+import { X } from 'lucide-react';
+import { Project } from '../types';
+import { useEffect } from 'react';
+
+interface ProjectModalProps {
+  project: Project;
+  onClose: () => void;
+}
+
+export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, []);
+
+  return (
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div 
+        className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-2xl bg-white dark:bg-gray-900 shadow-2xl transform transition-all duration-300 animate-in slide-in-from-bottom-4"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header Section */}
+        <div className="sticky top-0 z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-8 pt-8 pb-4 border-b border-gray-100 dark:border-gray-800">
+          <button
+            onClick={onClose}
+            className="absolute right-6 top-6 p-2.5 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+            aria-label="Close modal"
+          >
+            <X className="h-5 w-5 text-gray-600 dark:text-gray-300" />
+          </button>
+          <h2 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white pr-12">{project.title}</h2>
+          <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">{project.description}</p>
+        </div>
+
+        {/* Content Section */}
+        <div className="px-8 py-8">
+          {/* Image Gallery */}
+          <div className="grid gap-8">
+            {project.images.map((image, index) => (
+              <div 
+                key={index} 
+                className="rounded-xl overflow-hidden shadow-xl dark:shadow-gray-800/30 transition-transform hover:scale-[1.02] duration-300"
+              >
+                <img
+                  src={image}
+                  alt={`${project.title} - View ${index + 1}`}
+                  className="w-full h-auto object-cover"
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Project Details */}
+          <div className="mt-12 grid gap-8 sm:grid-cols-2">
+            {/* Materials Section */}
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
+              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Materials Used</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.materials.map((material, index) => (
+                  <span
+                    key={index}
+                    className="rounded-full bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 shadow-sm dark:shadow-gray-800/30"
+                  >
+                    {material}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Client Testimonial */}
+            {project.clientTestimonial && (
+              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
+                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Client Testimonial</h3>
+                <blockquote>
+                  <p className="text-gray-700 dark:text-gray-200 italic text-lg leading-relaxed mb-4">
+                    "{project.clientTestimonial.content}"
+                  </p>
+                  <footer>
+                    <p className="font-semibold text-gray-900 dark:text-white">
+                      {project.clientTestimonial.name}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {project.clientTestimonial.role}
+                    </p>
+                  </footer>
+                </blockquote>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
