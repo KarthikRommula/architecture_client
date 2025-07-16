@@ -21,20 +21,20 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       onClick={onClose}
     >
       <div 
-        className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-2xl bg-white dark:bg-gray-900 shadow-2xl transform transition-all duration-300 animate-in slide-in-from-bottom-4"
+        className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-2xl bg-card shadow-2xl transform transition-all duration-300 animate-in slide-in-from-bottom-4"
         onClick={e => e.stopPropagation()}
       >
         {/* Header Section */}
-        <div className="sticky top-0 z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm px-8 pt-8 pb-4 border-b border-gray-100 dark:border-gray-800">
+        <div className="sticky top-0 z-10 bg-card/95 backdrop-blur-sm px-8 pt-8 pb-4 border-b border-border">
           <button
             onClick={onClose}
-            className="absolute right-6 top-6 p-2.5 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
+            className="absolute right-6 top-6 p-2.5 rounded-full bg-primary hover:bg-primary/80 transition-colors"
             aria-label="Close modal"
           >
-            <X className="h-5 w-5 text-gray-600 dark:text-gray-300" />
+            <X className="h-5 w-5 text-white" />
           </button>
-          <h2 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white pr-12">{project.title}</h2>
-          <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">{project.description}</p>
+          <h2 className="text-3xl font-bold mb-2 text-foreground pr-12">{project.title}</h2>
+          <p className="text-muted-foreground text-lg leading-relaxed">{project.description}</p>
         </div>
 
         {/* Content Section */}
@@ -59,13 +59,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Project Details */}
           <div className="mt-12 grid gap-8 sm:grid-cols-2">
             {/* Materials Section */}
-            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
-              <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Materials Used</h3>
+            <div className="bg-card/80 rounded-xl p-6 backdrop-blur-sm">
+              <h3 className="text-xl font-semibold mb-4 text-foreground">Materials Used</h3>
               <div className="flex flex-wrap gap-2">
                 {project.materials.map((material, index) => (
                   <span
                     key={index}
-                    className="rounded-full bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 shadow-sm dark:shadow-gray-800/30"
+                    className="rounded-full bg-muted px-4 py-2 text-sm font-medium text-muted-foreground shadow-sm"
                   >
                     {material}
                   </span>
@@ -75,17 +75,17 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Client Testimonial */}
             {project.clientTestimonial && (
-              <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 backdrop-blur-sm">
-                <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-white">Client Testimonial</h3>
+              <div className="bg-card/80 rounded-xl p-6 backdrop-blur-sm">
+                <h3 className="text-xl font-semibold mb-4 text-foreground">Client Testimonial</h3>
                 <blockquote>
-                  <p className="text-gray-700 dark:text-gray-200 italic text-lg leading-relaxed mb-4">
+                  <p className="text-muted-foreground italic text-lg leading-relaxed mb-4">
                     "{project.clientTestimonial.content}"
                   </p>
                   <footer>
-                    <p className="font-semibold text-gray-900 dark:text-white">
+                    <p className="font-semibold text-foreground">
                       {project.clientTestimonial.name}
                     </p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <p className="text-sm text-muted-foreground">
                       {project.clientTestimonial.role}
                     </p>
                   </footer>

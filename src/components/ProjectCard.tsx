@@ -8,7 +8,7 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   return (
     <div
-      className="group cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800"
+      className="group cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-card"
       onClick={() => onClick(project)}
     >
       <div className="relative aspect-[4/3] overflow-hidden">
@@ -23,9 +23,9 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
         </div>
       </div>
       <div className="p-6">
-        <h3 className="text-lg font-semibold dark:text-white mb-2">{project.title}</h3>
-        <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-2">{project.description}</p>
-        <span className="inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+        <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.description}</p>
+        <span className="inline-block rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
           {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
         </span>
       </div>
