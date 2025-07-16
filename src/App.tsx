@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { ArrowDown} from 'lucide-react';
 import ThemeToggle from './components/ThemeToggle';
 import ProjectCard from './components/ProjectCard';
@@ -7,7 +7,6 @@ import { projects, blogPosts, } from './data';
 import { Project } from './types';
 import ContactPage from './components/Contact_us';
 import FooterPage from './components/Footer';
-import Spinner from "./components/Spinner";
 function App() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [filter, setFilter] = useState<string>('all');
@@ -19,7 +18,6 @@ function App() {
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors">
       <ThemeToggle />
-      
       {/* Hero Section */}
       <section className="relative h-screen bg-background">
         <img
@@ -37,6 +35,7 @@ function App() {
               about?.scrollIntoView({ behavior: 'smooth' });
             }}
             className="animate-bounce"
+            aria-label="Scroll to About section"
           >
             <ArrowDown className="w-8 h-8" />
           </button>

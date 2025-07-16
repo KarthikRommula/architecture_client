@@ -26,13 +26,13 @@ const FooterPage = () => {
                     </span>
 
                     <div className="flex items-center gap-5 text-muted-foreground">
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="group">
+                        <a href="#" target="_blank" rel="noopener noreferrer" className="group" aria-label="Twitter">
                             <TwitterIcon className="h-5 w-5 transition-colors duration-200" />
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="group">
+                        <a href="#" target="_blank" rel="noopener noreferrer" className="group" aria-label="Facebook">
                             <FacebookIcon className="h-5 w-5 transition-colors duration-200" />
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="group">
+                        <a href="#" target="_blank" rel="noopener noreferrer" className="group" aria-label="Instagram">
                             <InstagramIcon className="h-5 w-5 transition-colors duration-200" />
                         </a>
                     </div>
