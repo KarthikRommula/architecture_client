@@ -16,6 +16,16 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, []);
 
+  const [imgLoaded, setImgLoaded] = useState<boolean[]>(() => project.images.map(() => false));
+
+  const handleImgLoad = (idx: number) => {
+    setImgLoaded((prev) => {
+      const updated = [...prev];
+      updated[idx] = true;
+      return updated;
+    });
+  };
+
   return (
     <div 
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-200"
@@ -42,26 +52,23 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="px-8 py-8">
           {/* Image Gallery */}
           <div className="grid gap-8">
-            {project.images.map((image, index) => {
-              const [imgLoaded, setImgLoaded] = useState(false);
-              return (
-                <div 
-                  key={index} 
-                  className="rounded-xl overflow-hidden shadow-xl dark:shadow-gray-800/30 transition-transform hover:scale-[1.02] duration-300"
-                >
-                  {!imgLoaded && (
-                    <Skeleton className="absolute inset-0 w-full h-full z-10" />
-                  )}
-                  <img
-                    src={image}
-                    alt={`${project.title} - View ${index + 1}`}
-                    className={`w-full h-auto object-cover ${imgLoaded ? '' : 'invisible'}`}
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    onLoad={() => setImgLoaded(true)}
-                  />
-                </div>
-              );
-            })}
+            {project.images.map((image, index) => (
+              <div 
+                key={index} 
+                className="rounded-xl overflow-hidden shadow-xl dark:shadow-gray-800/30 transition-transform hover:scale-[1.02] duration-300 relative"
+              >
+                {!imgLoaded[index] && (
+                  <Skeleton className="absolute inset-0 w-full h-full z-10" />
+                )}
+                <img
+                  src={image}
+                  alt={`${project.title} - View ${index + 1}`}
+                  className={`w-full h-auto object-cover ${imgLoaded[index] ? '' : 'invisible'}`}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  onLoad={() => handleImgLoad(index)}
+                />
+              </div>
+            ))}
           </div>
 
           {/* Project Details */}
