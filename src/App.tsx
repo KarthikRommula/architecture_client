@@ -1,3 +1,4 @@
+import { Skeleton } from './components/ui/skeleton';
 import { useState } from 'react';
 import { ArrowDown} from 'lucide-react';
 import ThemeToggle from './components/ThemeToggle';
@@ -20,11 +21,23 @@ function App() {
       <ThemeToggle />
       {/* Hero Section */}
       <section className="relative h-screen bg-background">
-        <img
-          src="/images/Background.webp"
-          alt="Hero"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        {/* Hero Image with Skeleton */}
+        {(() => {
+          const [imgLoaded, setImgLoaded] = useState(false);
+          return (
+            <>
+              {!imgLoaded && (
+                <Skeleton className="absolute inset-0 w-full h-full z-10" />
+              )}
+              <img
+                src="/images/Background.webp"
+                alt="Hero"
+                className={`absolute inset-0 w-full h-full object-cover ${imgLoaded ? '' : 'invisible'}`}
+                onLoad={() => setImgLoaded(true)}
+              />
+            </>
+          );
+        })()}
         <div className="absolute inset-0 bg-black bg-opacity-50" />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white p-4">
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4">Md Jaan</h1>
@@ -92,23 +105,30 @@ function App() {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-8 text-center dark:text-white">Design Blog</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {blogPosts.map((post) => (
-              <article key={post.id} className="rounded-lg overflow-hidden shadow-lg bg-card transition-colors">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">{post.title}</h3>
-                  <p className="text-muted-foreground mb-4">{post.excerpt}</p>
-                  <div className="flex justify-between items-center text-sm text-muted-foreground">
-                    <span>{post.author}</span>
-                    <span>{new Date(post.date).toLocaleDateString()}</span>
+            {blogPosts.map((post) => {
+              const [imgLoaded, setImgLoaded] = useState(false);
+              return (
+                <article key={post.id} className="rounded-lg overflow-hidden shadow-lg bg-card transition-colors">
+                  {!imgLoaded && (
+                    <Skeleton className="w-full h-48" />
+                  )}
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className={`w-full h-48 object-cover ${imgLoaded ? '' : 'invisible'}`}
+                    onLoad={() => setImgLoaded(true)}
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2 text-foreground">{post.title}</h3>
+                    <p className="text-muted-foreground mb-4">{post.excerpt}</p>
+                    <div className="flex justify-between items-center text-sm text-muted-foreground">
+                      <span>{post.author}</span>
+                      <span>{new Date(post.date).toLocaleDateString()}</span>
+                    </div>
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
