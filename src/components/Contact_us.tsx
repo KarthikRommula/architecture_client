@@ -12,7 +12,7 @@ const ContactPage = () => (
       </p>
       <div className="max-w-screen-xl mx-auto pt-24 pb-8 grid md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-10 px-6 md:px-0">
         {/* Email */}
-        <div className="text-center flex flex-col items-center">
+        <div className="text-center flex flex-col items-center rounded-xl shadow-md bg-card p-8 h-[300px] min-h-[300px] max-h-[300px]">
           <div className="h-12 w-12 flex items-center justify-center bg-primary/10 text-primary rounded-full">
             <MailIcon />
           </div>
@@ -29,7 +29,7 @@ const ContactPage = () => (
         </div>
 
         {/* Office */}
-        <div className="text-center flex flex-col items-center">
+        <div className="text-center flex flex-col items-center rounded-xl shadow-md bg-card p-8 h-[300px] min-h-[300px] max-h-[300px]">
           <div className="h-12 w-12 flex items-center justify-center bg-primary/10 text-primary rounded-full">
             <MapPinIcon />
           </div>
@@ -39,16 +39,18 @@ const ContactPage = () => (
           </p>
           <a
             className="mt-4 font-medium text-primary"
-            href="https://map.google.com"
+            href="https://map.google.com/?q=Kashipur, Uttarakhand 
+"
             target="_blank"
             rel="noopener noreferrer"
           >
-            100 Smith Street Collingwood <br /> VIC 3066 AU
+            Kashipur, Uttarakhand 
+ <br /> 
           </a>
         </div>
 
         {/* Phone */}
-        <div className="text-center flex flex-col items-center">
+        <div className="text-center flex flex-col items-center rounded-xl shadow-md bg-card p-8 h-[300px] min-h-[300px] max-h-[300px]">
           <div className="h-12 w-12 flex items-center justify-center bg-primary/10 text-primary rounded-full">
             <PhoneIcon />
           </div>
@@ -56,9 +58,11 @@ const ContactPage = () => (
           <p className="mt-2 text-muted-foreground">Mon–Fri from 8am to 5pm.</p>
           <a
             className="mt-4 font-medium text-primary"
-            href="tel:+15550000000"
+            href="https://wa.me/919810762877"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            +1 (555) 000-0000
+            +91 9810762877
           </a>
         </div>
       </div>

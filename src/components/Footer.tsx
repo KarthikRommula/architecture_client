@@ -20,19 +20,19 @@ const FooterPage = () => {
                             className="hover:text-foreground"
                             onClick={() => window.location.reload()}
                         >
-                            Md Jaan
+                            MD Jaan Interiors
                         </Link>
                         . All rights reserved.
                     </span>
 
                     <div className="flex items-center gap-5 text-muted-foreground">
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="group" aria-label="Twitter">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="group" aria-label="Twitter">
                             <TwitterIcon className="h-5 w-5 transition-colors duration-200" />
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="group" aria-label="Facebook">
+                        <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" className="group" aria-label="Facebook">
                             <FacebookIcon className="h-5 w-5 transition-colors duration-200" />
                         </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" className="group" aria-label="Instagram">
+                        <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" className="group" aria-label="Instagram">
                             <InstagramIcon className="h-5 w-5 transition-colors duration-200" />
                         </a>
                     </div>

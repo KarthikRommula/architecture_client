@@ -11,10 +11,10 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
   const [imgLoaded, setImgLoaded] = useState(false);
   return (
     <div
-      className="group cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-card"
+      className="group cursor-pointer overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-all duration-300 bg-card flex flex-col h-[420px] min-h-[420px] max-h-[420px]"
       onClick={() => onClick(project)}
     >
-      <div className="relative aspect-[4/3] overflow-hidden">
+      <div className="relative aspect-[4/3] overflow-hidden flex-shrink-0">
         {!imgLoaded && (
           <Skeleton className="absolute inset-0 w-full h-full z-10" />
         )}
@@ -29,10 +29,12 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
           <span className="text-xl font-semibold text-white px-4 text-center">{project.title}</span>
         </div>
       </div>
-      <div className="p-6">
-        <h3 className="text-lg font-semibold text-foreground mb-2">{project.title}</h3>
-        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.description}</p>
-        <span className="inline-block rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
+      <div className="p-6 flex flex-col flex-1 justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-foreground mb-2 line-clamp-1">{project.title}</h3>
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{project.description}</p>
+        </div>
+        <span className="inline-block rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground mt-auto w-fit">
           {project.category.charAt(0).toUpperCase() + project.category.slice(1)}
         </span>
       </div>
